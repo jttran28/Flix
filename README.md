@@ -33,4 +33,4 @@ It definately took me a bit to figure out how to install cocoapods. The title an
 <img src="http://g.recordit.co/m4cnb62HWa.gif" width=250><br>
 
 ### Notes
-Describe any challenges encountered while building the app.
+I had some trouble for a moment with the API and the appearance of the grid view. But after looking through the slack channel I was able to solve it quickly.
