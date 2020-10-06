@@ -35,7 +35,6 @@ class Movies_ViewController: UIViewController, UITableViewDataSource, UITableVie
             
                 self.tableView.reloadData()
             
-                print(dataDictionary)
               // TODO: Get the array of movies
               // TODO: Store the movies in a property to use elsewhere
               // TODO: Reload your table view data
@@ -58,12 +57,30 @@ class Movies_ViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.titleLabel.text = title
         cell.synopsisLabel.text = synopsis
         
-        let baseUrl = "http://image.tmdb.org/t/p/w185"
+        let baseUrl = "https://image.tmdb.org/t/p/w185"
         let posterPath = movie["poster_path"] as! String
         let posterUrl = URL(string: baseUrl + posterPath)
         cell.posterView.af_setImage(withURL: posterUrl!)
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        /*
+         get the new view controller using segue.destination
+         pass the selected object to the new view controller
+         */
+        
+        // find selected movie
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        
+        // pass the selected movie to the details view controller
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }
